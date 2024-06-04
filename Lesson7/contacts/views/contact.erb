@@ -1,0 +1,23 @@
+<h3>Contact info for <%= @contact[:first_name] %> <%= @contact[:last_name] %></h3>
+<% @contact.each do |key, value| %>
+<% next if key == :id %>
+  <dl>
+    <dt><%= pretty_print(key) %></dt>
+    <dd>
+      <% if key == :phone_num %>
+        <%= format_phones(value) %>
+      <% elsif key == :email %>
+        <%= format_emails(value) %>
+      <% else %>
+        <%= value %> 
+      <% end %>
+    </dd>
+  </dl>
+<% end %>
+
+<a href="/contacts/<%= @contact[:id] %>/edit"><button type="button">Edit Info</button></a>
+<br>
+<br>
+<form action="/" method="get">
+  <input type="submit" value="Back to Contact List">
+</form>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Contact List</title>
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+  </head>
+  <body>
+    <% if session[:message] %>
+      <aside class="flash-message"> <%= session.delete(:message) %> </aside>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>

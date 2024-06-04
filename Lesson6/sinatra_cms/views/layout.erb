@@ -1,0 +1,25 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CMS</title>
+    <link rel="stylesheet" href="/stylesheets/cms.css" type="text/css">
+  </head>
+  <body>
+    <% if session[:message] %>
+      <aside class="flash-message"> <%= session.delete(:message) %> </aside>
+    <% end %>
+
+    <%= yield %>
+
+    <% if request.path == '/' && signed_in? %>
+      <br>
+      <form action="/users/signout" method="post">
+        <div><i>Signed in as <%= session[:username] %>.</i> <button type="submit">Sign out</button></div>
+      </form>
+    <% elsif  request.path != '/' %> 
+      <form action="/" method="get">
+        <button type="submit">Back to index</button>
+      </form>
+    <% end %>
+  </body>
+</html>

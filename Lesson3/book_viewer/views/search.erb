@@ -1,0 +1,31 @@
+<h2 class="content-subhead">Search</h2>
+
+<form action="/search" method="get">
+  <input name="query" value="<%= params[:query] %>">
+  <button type="submit">Search</button>
+</form>
+
+<% if @query && @found != [] %>
+  <div class="pure-menu">
+    <h4> Results for "<%= @query %>" </h4>
+    <ul class="pure-menu-list">
+      <% @found.each do |hash| %>
+        <li class="pure-menu-item">
+          <h4>From: <%= hash.keys[0][1] %></h4>
+        </li>
+        <ul class="pure-menu-list">
+        <% counter = 0 %>
+          <% hash.values[0][0].each do |p_num| %>
+            <li class="pure-menu-item">
+            <a href="/chapters/<%= hash.keys[0][0] %>#<%=p_num%>" class="pure-menu-link"><%= hash.values[0][1][counter] %></a>
+            <% counter += 1 %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </ul>
+  </div>
+<% elsif @query%>
+  <br>
+  <div> Sorry no matches were found </div>
+<% end %>

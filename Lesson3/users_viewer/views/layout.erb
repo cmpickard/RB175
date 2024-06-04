@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title> <%=@name%>'s Page </title>
+    <style>
+      li {
+        list-style: none;
+      }
+    </style>
+  </head>
+  <body>
+    <%= yield %>
+    <br>
+    <p>There are <%= @users.size %> total users and <%=@interests%> interests among them.</p>
+  </body>
+</html>

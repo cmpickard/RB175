@@ -1,0 +1,41 @@
+<h3>Edit contact</h3>
+<form action='/contacts/<%= @id.to_s %>/edit' method='post'>
+  <dl>
+    <dt><label for='first_name'>First name</label></dt>
+    <dd><input type="text" name="first_name" id="first_name" value=<%= @contact[:first_name] %> required></dd>
+
+    <dt><label for='last_name'>Last name</label></dt>
+    <dd><input type="text" name="last_name" id="last_name" value=<%= @contact[:last_name] %> required></dd>
+
+    <dt><label for='phone'>Phone number</label></dt>
+    <% @contact[:phone_num].each do |phone, type| %>
+      <dd><input type="tel" name="phone" id="phone" value="<%= phone %>">
+        Type: 
+        <select name="phone_type" value="<%= type %>">
+            <option value="home">Home</option>
+            <option value="work">Work</option>
+            <option value="cell">Cell</option>
+        </select>
+      </dd>
+    <% end %>
+
+    <dt><label for='email'>Email</label></dt>
+      <% @contact[:email].each do |email| %>
+        <dd><input type="email" name="email" id="email" value="<%= email %>"></dd>
+      <% end %>
+
+    <dt><label for='group'>Contact Group</label></dt>
+      <dd><select name="contact_group">
+            <option value="Family">Family</option>
+            <option value="Friends">Friend</option>
+            <option value="Work">Work</option>
+            <option value="Other">Other</option>
+          </select>
+      </dd>
+  </dl>
+  <input type="submit" value="Edit Contact">
+</form>
+<br>
+<form action="/" method="get">
+  <input type="submit" value="Back to Contact List">
+</form>

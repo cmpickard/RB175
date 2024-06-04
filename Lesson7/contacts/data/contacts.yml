@@ -1,0 +1,26 @@
+---
+- :first_name: D'tNgnoa
+  :last_name: Woove-smoothe
+  :phone_num:
+    "(888)888-8888": Cell
+  :email:
+  - sample@gmail.com
+  - crample@hotmail.com
+  :group: Family
+  :id: 6
+- :first_name: JohnThree
+  :last_name: JuanThree
+  :phone_num:
+    "(999)999-9993": home
+  :email:
+  - sampl3e@gmail.com
+  :group: Family
+  :id: 7
+- :first_name: John
+  :last_name: Juan
+  :phone_num:
+    "(999)999-9999": Home
+  :email:
+  - sample@gmail.com
+  :group: Friends
+  :id: 8

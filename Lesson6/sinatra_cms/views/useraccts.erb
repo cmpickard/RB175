@@ -1,0 +1,25 @@
+<form action="/useraccts" method="post">
+  <dl><h2>Add user</h2>
+    <dt><label for="name">Username</label></dt>
+    <dd><input type="text" id="name" name="username"></dd>
+
+    <dt><label for="password">Password</label></dt>
+    <dd><input type="password" id="name" name="password"></dd>
+  </dl>
+
+  <input type="submit" value="Add user">
+</form>
+<br>
+<form action="/users/delete" method="post">
+  <h2>Delete user account</h2>
+  <label for="delete">Select username to delete</label>
+  <select name="name" id="delete">
+    <% load_users.each do |username, _| %>
+      <% next if username == 'admin' %>
+      <option value="<%= username %>"><%= username %></option>
+    <% end %>
+  </select>
+  <input type="submit" value="Delete user">
+  <br>
+  <br>
+</form>

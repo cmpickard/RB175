@@ -1,0 +1,9 @@
+---
+- :first_name: John
+  :last_name: Juan
+  :phone_num:
+    "(999)999-9999": Home
+  :email:
+  - sample@gmail.com
+  :group: Friends
+  :id: 1

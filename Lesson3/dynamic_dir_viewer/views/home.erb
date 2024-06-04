@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title> </title>
+</head>
+ <body>
+  <% @files.each do |file| %>
+    <p><a href="<%= file %>"><%= file %></p></a>
+  <% end %>
+  <a href="/?sort=asc"><button type="button">Sort Ascending</button></a>
+  <a href="/?sort=desc"><button type="button">Sort Descending</button></a>
+</body>
+</html>

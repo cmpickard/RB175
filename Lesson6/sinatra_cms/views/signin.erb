@@ -1,0 +1,10 @@
+<form action="/users/signin" method="post">
+  <dl>
+    <dt><label for="username">Username</label>
+    <dd><input type="text" id="username" name="username" value="<%= params["username"] %>">
+
+    <dt><label for="password">Password</label>
+    <dd><input type="password" id="password" name="password">
+  </dl>
+  <input type="submit" value="Sign in">
+</form>

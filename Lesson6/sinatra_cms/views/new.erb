@@ -1,0 +1,22 @@
+<h2>Create a new file</h2>
+<form action="/new" method="post">
+  <label for="textbox">Name of new <%= ".#{FILETYPES.join(' or .')}" %> document:</label>
+  <div>
+    <input type="text" id="textbox" name="file_name" placeholder="my_doc.txt" value="<%=@file_name%>">
+    <input type="submit" value="Create">
+  </div>
+</form>
+<br>
+<h2>Or duplicate an existing file</h2>
+<form action="/duplicate" method="post">
+  <label for="duplicate">Select file</label>
+  <select name="duplicate" id="duplicate">
+    <% @file_names.each do |file| %>
+      <option value="<%= file %>"><%= file %></option>
+    <% end %>
+  </select>
+  <input type="submit" value="Duplicate">
+</form>
+<br>
+<br>
+<br>

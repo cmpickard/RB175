@@ -1,0 +1,14 @@
+li {
+  list-style: none;
+}
+
+ul {
+  /* margin: 0; */
+  padding: 0 0 0 15px;
+}
+
+.flash-message {
+  padding: 10px;
+  background: #FFFF99;
+  font-weight: bolder;
+}

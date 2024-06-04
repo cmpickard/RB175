@@ -1,0 +1,25 @@
+<ul>
+  <% @file_names.each do |file| %>
+    <li><a href="/<%= file %>"> <%= file %></a>
+    <% if signed_in? %>
+      <a href="/<%= file %>/rename"><button>Rename</button></a>
+      <a href="/<%= file %>/edit"><button>Edit</button></a>
+      <form class='delete' action="/<%=file%>/delete" method="post">
+        <input type="submit" value="Delete">
+      </form>
+    <% end %>
+    </li>
+    <br>
+  <% end %>
+
+  <% if !signed_in? %>
+    <a href="/users/signin"><button>Sign in</button></a>
+    (or <a href="/users/new_acct"><button>Sign up for an account</button></a>)
+  <% else %>
+    <a href="/new"><button>Create a new document</button></a>
+  <% end %>
+
+  <% if session[:admin] %>
+    <a href="/useraccts"><button>Edit user accounts</button></a>
+  <% end %>
+</ul>

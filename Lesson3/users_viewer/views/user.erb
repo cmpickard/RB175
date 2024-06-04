@@ -1,0 +1,20 @@
+<h3>Name</h3>
+<p><%=@name%>
+
+<h3>Email</h3>
+<p><%=@email_str%></p>
+
+<h3>Interests</h3>
+<p><%= @interests_arr.join(", ") %></p>
+
+<h3>Other users</h3>
+<ul>
+  <%@other_users.each do |user|%>
+  <li><a href="/user/<%= user %>"><%=user%></a></li>
+  <%end%>
+</ul>
+
+<br>
+<button type=button><a href="/">Back to homepage</a></button>
+
+

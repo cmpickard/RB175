@@ -1,0 +1,11 @@
+source "https://rubygems.org"
+
+gem 'sinatra'
+gem 'sinatra-contrib'
+gem 'rackup'
+gem 'rack-test'
+gem 'minitest'
+gem 'webrick'
+gem 'erubis'
+
+ruby '3.2.2'

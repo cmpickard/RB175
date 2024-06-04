@@ -1,0 +1,25 @@
+<h2 class="content-subhead">Search</h2>
+
+<form action="/search" method="get">
+  <input name="query" value="<%= params[:query] %>">
+  <button type="submit">Search</button>
+</form>
+
+<div class="pure-menu">
+  <% if @matches != [] && !@query.nil?%>
+  <ul class="pure-menu-list">
+    <% @matches.each do |chapter_hash| %>
+      <% chapter_hash.each do |chapter_title, paragraph_arr| %>
+        <h3> Chapter <%= get_ch_num(chapter_title, @contents) %> </h3>
+        <% paragraph_arr.each do |text, paragraph_id| %>
+          <a href="/chapters/<%= get_ch_num(chapter_title, @contents) %>#paragraph-<%=paragraph_id%>" class="pure-menu-link">
+            <li> <%= text %> </li>
+          </a>
+        <% end %>
+      <% end %>
+    <% end %>
+  </ul>
+  <% elsif @matches == [] %>
+    <p> Sorry, no matches found </p>
+  <% end %>
+</div>

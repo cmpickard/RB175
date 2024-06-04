@@ -1,0 +1,10 @@
+<form action="/users/new_acct" method="post">
+  <dl><h2>New User Account Information</h2>
+    <dt><label for="name">Username</label></dt>
+    <dd><input type="text" id="name" name="username" value=<%= params[:username] %>></dd>
+
+    <dt><label for="password">Password</label></dt>
+    <dd><input type="password" id="name" name="password" value="<%=params[:password]%>"></dd>
+  </dl>
+  <input type="submit" value="Create user account">
+</form>

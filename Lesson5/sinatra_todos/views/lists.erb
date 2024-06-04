@@ -1,0 +1,15 @@
+<% content_for :header_links do %>
+  <a class="add" href="/lists/new">New List</a>
+<% end %>
+
+<ul id="lists">
+  <% sort_lists_by_completed(@lists).each_with_index do |list, idx| %>
+    <li class="<%= list_complete?(list) %>">
+      <a href="/lists/<%= get_list_id_for(list) %>">
+        <h2><%= list[:name] %></h2>
+        <p><%= count_complete(list) %> / <%= count_total_todos(list) %></p>
+      </a>
+    </li>
+  <% end %>
+</ul>
+

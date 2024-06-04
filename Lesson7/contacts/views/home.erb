@@ -1,0 +1,15 @@
+<h1> Contacts </h1>
+<ul>
+  <% @contacts.each do |contact| %>
+    <li><a href="/contacts/<%= contact[:id] %>">
+    <%= contact[:first_name] %> <%= contact[:last_name] %></a>
+    <a href="/contacts/<%=contact[:id].to_s%>/edit"><button type="button">Edit</button></a>
+    <a href="/contacts/<%=contact[:id].to_s%>/delete"><button type="button">Delete</button></a>
+    </li>
+    <br>
+  <% end %>
+</ul>
+<br>
+<form action="/contacts/new" method="get">
+  <input type="submit" value="Add new contact">
+</form>
