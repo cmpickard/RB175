@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset='utf-8'>
+    <title>Content Management System</title>
+    <style>
+      body {
+        padding: 1em;
+        font-family: sans-serif;
+        line-height: 2;
+      }
+      button {
+        margin-left: 10px;
+      }
+      .flash-message {
+        padding: 10px;
+        background: #FFFF99;
+      }
+    </style>
+  </head>
+  <body>
+    <% if session[:message] %>
+      <p class="flash-message"> <%= session.delete(:message) %> </p>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>

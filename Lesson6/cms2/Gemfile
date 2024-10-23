@@ -1,0 +1,15 @@
+source 'https://rubygems.org'
+
+gem 'sinatra'
+gem 'sinatra-contrib'
+gem 'erubis'
+gem 'webrick'
+gem 'minitest'
+gem 'minitest-reporters'
+gem 'rackup'
+gem 'rack-test'
+gem 'rake'
+gem 'redcarpet'
+gem 'fileutils'
+
+ruby '3.2.2'

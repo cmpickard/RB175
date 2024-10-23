@@ -1,0 +1,6 @@
+<ul>
+  <% @files.each do |file| %>
+    <li><a href="<%= file %>"><%= file %></a><a href="/<%= file %>/edit"><button>Edit</button></a><a href="<%= file %>/delete"><button>Delete</button></a></li>
+  <% end %>
+</ul>
+<a href="/new"><button>New Document</button></a>

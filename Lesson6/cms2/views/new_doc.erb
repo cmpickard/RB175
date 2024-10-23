@@ -1,0 +1,11 @@
+<form action="/new" method="post">
+  <h3>Add a new document:</h3>
+  <input type="text" name="name" placeholder="my_doc_name.txt" value=<%= @name %>>
+  <br>
+  <textarea id="file-contents" name="text" rows="20" cols="60"><%= @content %></textarea>
+  <br>
+  <br>
+  <button>Create</button>
+</form>
+<a href="/"><button>Back</button></a>
+

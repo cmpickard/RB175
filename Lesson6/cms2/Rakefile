@@ -1,0 +1,6 @@
+desc 'run tests'
+task :test do
+  sh 'ruby ./test/cms_test.rb'
+end
+
+task :default => [:test]
