@@ -3,4 +3,12 @@
     <li><a href="<%= file %>"><%= file %></a><a href="/<%= file %>/edit"><button>Edit</button></a><a href="<%= file %>/delete"><button>Delete</button></a></li>
   <% end %>
 </ul>
-<a href="/new"><button>New Document</button></a>
+<a href="/new">New Document</a>
+
+<footer>
+  <% if @username %>
+    Signed in as <%=@username%><a href="/logout"><button>Sign out</button></a>
+  <% else %>
+    <a href="/login"><button>Sign in</button></a>
+  <% end %>
+</footer>

@@ -30,6 +30,14 @@ class CMSTest < Minitest::Test
     FileUtils.rm_rf(data_path)
   end
 
+  def session
+    last_request.env["rack.session"]
+  end
+
+  def admin_session
+    { "rack.session" => { username: "admin" } }
+  end
+
   def test_index
     get "/"
     assert_equal 200, last_response.status
@@ -47,9 +55,10 @@ class CMSTest < Minitest::Test
   def test_bad_file_name
     get "/no_such_file.txt"
     assert_equal 302, last_response.status
+    assert_equal "'no_such_file.txt' does not exist", session[:message]
+
     get last_response.location
     assert_equal 200, last_response.status
-    assert_includes(last_response.body, "'no_such_file.txt' does not exist")
   end
 
   def test_markdown_rendering
@@ -59,17 +68,18 @@ class CMSTest < Minitest::Test
   end
 
   def test_edit_page
-    get "/changes.txt/edit"
+    get "/changes.txt/edit", {}, admin_session
     assert_includes(last_response.body, "Nothing has ever changed")
     assert_includes(last_response.body, "<textarea")
 
     post "/changes.txt", text: "Something has changed!"
+    assert_equal "changes.txt has been updated", session[:message]
     get "/changes.txt"
     assert_includes(last_response.body, "Something has changed!")
   end
 
   def test_create_doc
-    get "/new"
+    get "/new", {}, admin_session
     assert_equal 200, last_response.status
     assert_includes(last_response.body, "<h3>Add a new document:</h3>")
 
@@ -80,8 +90,8 @@ class CMSTest < Minitest::Test
     assert_includes(last_response.body, "Name of file must end in '.txt' or '.md'")
 
     post "/new", name:"new_file.txt", text:"New content"
+    assert_equal "new_file.txt has been created", session[:message]
     get last_response.location
-    assert_includes(last_response.body, "new_file.txt has been created")
 
     get "/new_file.txt"
     assert_equal "New content", last_response.body
@@ -92,11 +102,56 @@ class CMSTest < Minitest::Test
     get "/"
     assert_includes(last_response.body, "delete_me.txt")
     
-    get "/delete_me.txt/delete"
+    get "/delete_me.txt/delete", {}, admin_session
+    assert_equal "delete_me.txt has been deleted", session[:message]
     get last_response.location
-    assert_includes(last_response.body, "delete_me.txt has been deleted")
 
     get "/"
     refute_includes(last_response.body, "delete_me.txt")
+  end
+
+  def test_signin
+    get "/"
+    assert_includes(last_response.body, "Sign in")
+
+    get "/login"
+    assert_includes(last_response.body, "Username")
+
+    post "/login", username:"nobody", password:""
+    assert_includes(last_response.body, "Invalid credentials")
+    assert_includes(last_response.body, "nobody")
+
+    post "/login", username:"admin", password:""
+    assert_includes(last_response.body, "Invalid credentials")
+
+    post "/login", username:"nobody", password:"secret"
+    assert_includes(last_response.body, "Invalid credentials")
+
+    post "/login", username:"admin", password:"secret"
+    assert_equal "Welcome, admin!", session[:message]
+    get last_response.location
+    assert_includes(last_response.body, "Signed in as admin")
+
+    post "/login", username:"guest1", password:"password1"
+    assert_equal "Welcome, guest1!", session[:message]
+    get last_response.location
+    assert_includes(last_response.body, "Signed in as guest1")
+  end
+
+  def test_not_signed_in
+    get '/new'
+    assert_equal "You must be signed in to do that", session[:message]
+
+    post '/new'
+    assert_equal "You must be signed in to do that", session[:message]
+
+    get '/about.md/edit'
+    assert_equal "You must be signed in to do that", session[:message]
+
+    post '/about.md/edit'
+    assert_equal "You must be signed in to do that", session[:message]
+
+    get '/about.md/delete'
+    assert_equal "You must be signed in to do that", session[:message]
   end
 end

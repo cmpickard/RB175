@@ -11,5 +11,6 @@ gem 'rack-test'
 gem 'rake'
 gem 'redcarpet'
 gem 'fileutils'
+gem 'bcrypt'
 
 ruby '3.2.2'

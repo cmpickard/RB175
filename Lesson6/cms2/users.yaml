@@ -1,0 +1,5 @@
+{ 
+  admin: "$2a$12$kUJWZ6oAtGLMDhfqAybidu3CpY2boRSYiqt.OsJoAVhOdecj7sKLi",
+  guest1: "$2a$12$tkg8WH5nd/MiFggcnfX0QOoh5VzqHpD4YhXn6SuUZtpDXEKmY77J6",
+  guest2: "$2a$12$l8ILaEZODFepbkulIS.7JextdW4DHa4Kc1ciPtOuccC1kzxWUqWwS"
+}
