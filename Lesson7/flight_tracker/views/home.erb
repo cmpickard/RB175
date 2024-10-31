@@ -1,0 +1,30 @@
+<header>
+  <h1>Flights</h1>
+  <a class="add-link" href="flight/new"><button>Add flight</button></a>
+</header>
+<ul>
+  <% @flights.each do |flight| %>
+  <li>
+    <dl>
+      <div class="flight-fact">
+        <dt>Departure:</dt>
+        <dd><%= format_departure(flight[:departure]) %></dd>
+      </div>
+      <div class="flight-fact">
+        <dt>Destination:</dt>
+        <dd><%= flight[:destination] %></dd>
+      </div>
+      <div class="flight-fact">
+        <dt>Airline:</dt>
+        <dd><%= flight[:airline] %></dd>
+      </div>
+      <div class="flight-fact">
+        <dt>Flight number:</dt>
+        <dd><%= flight[:flight_num] %></dd>
+        
+      </div>
+      <a href="flight/<%= flight[:id] %>/edit" class="edit-button"><button>Edit flight</button></a>
+    </dl>
+  </li><br>
+  <% end %>
+</ul>

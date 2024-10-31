@@ -1,0 +1,31 @@
+<header>
+  <h1>Edit Flight Information</h1>
+  <a href="/"><button>Back</button></a>
+</header>
+
+<form method="post" action="/flight/<%= @id %>/edit">
+  <dl>
+    <dt><label for="departure">Departure Time: </label></dt>
+    <dd><input type="date" name="date" value="<%= @date || params[:date] %>">
+        <input id="departure" type="time" name="time" value="<%= @time || params[:time] %>"></dd>
+      <br>
+    <dt><label for="destination">Destination City: </label></dt>
+    <dd><input id="destination" type="text" name="destination" value="<%= @destination || params[:destination] %>"></dd>
+      <br>
+    <dt><label for="flight-number">Flight Number: </label></dt>
+    <dd><input id="flight-number" type="text" name="flight_num" value="<%= @flight_num || params[:flight_num] %>"></dd>
+      <br>
+    <dt><label for="airline">Airline: </label></dt>
+    <dd><select name="airline" id="airline">
+          <option value="Delta" <%= ("selected" if @airline == 'Delta') %>>Delta</option>
+          <option value="Southwest" <%= ("selected" if @airline == 'Southwest') %>>Southwest</option>
+          <option value="American" <%= ("selected" if @airline == 'American') %>>American</option>
+          <option value="United" <%= ("selected" if @airline == 'United') %>>United</option>
+        </select>
+    </dd>
+  </dl>
+  <button>Submit</button>
+</form>
+<br>
+<br>
+

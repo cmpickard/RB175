@@ -1,0 +1,6 @@
+desc 'run tests'
+task :test do
+  sh 'ruby ./test/tracker_test.rb'
+end
+
+task :default => [:test]
